@@ -1,0 +1,26 @@
+body {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+.title {
+  position: relative;
+  top: 20px;
+  font-size: 50px;
+  left: 40%;
+}
+
+.box {
+  display: flex;
+  position: relative;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.box input,
+.box button {
+  color: aqua;
+  background-color: rgb(176, 192, 202);
+  margin-bottom: 10px;
+}
