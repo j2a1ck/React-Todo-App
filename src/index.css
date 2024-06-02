@@ -1,26 +1,45 @@
 body {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  
+}
+.oswald {
+  font-family: "Oswald", sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  font-style: normal;
+  
 }
 
 .title {
-  position: relative;
-  top: 20px;
-  font-size: 50px;
-  left: 40%;
+ text-align: center;
+ color: aqua;
 }
 
 .box {
-  display: flex;
-  position: relative;
-  top: 30%;
-  left: 45%;
-  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px 0;
+  margin: 20px 0;
 }
 
-.box input,
 .box button {
-  color: aqua;
-  background-color: rgb(176, 192, 202);
-  margin-bottom: 10px;
+  color: white;
+  background-color: blueviolet;
+  margin: 10px;
+  border-radius: 15px;
+  width: 70px;
+  height: 40px;
+}
+
+.box input {
+  width: 250px;
+  height: 35px;
+  border-radius: 15px;
+  background-color: #78e4b7;
+  color: black;
+  font-size: medium;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: center;
+
+
 }
