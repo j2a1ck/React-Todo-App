@@ -23,8 +23,7 @@ export default function TaskBudget({ addTodo }){
         <div>
         <div className="box">
             <input value={taskText} onChange={handleTaskChange} placeholder="what is next? "></input>
-            <button type="submit" onClick={handleButtonClick}>add</button>
-            
+            <button type="submit" onClick={handleButtonClick}>add</button>   
         </div>
         </div>
 
