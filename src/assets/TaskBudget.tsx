@@ -1,14 +1,23 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function TaskBudget({ addTodo }) {
-  const [taskText, setTaskText] = useState("");
+interface TaskBudgetProps {
+  addTodo: (newTodo: TodoItem) => void;
+}
 
-  function handleTaskChange(event) {
+interface TodoItem {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+const TaskBudget: React.FC<TaskBudgetProps> = ({ addTodo }) => {
+  const [taskText, setTaskText] = useState<string>("");
+
+  function handleTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
     setTaskText(event.target.value);
   }
 
-  function handleButtonClick(e) {
+  function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (taskText.trim())
       addTodo({
@@ -18,6 +27,7 @@ export default function TaskBudget({ addTodo }) {
       });
     setTaskText("");
   }
+
   return (
     <>
       <div>
@@ -34,4 +44,6 @@ export default function TaskBudget({ addTodo }) {
       </div>
     </>
   );
-}
+};
+
+export default TaskBudget;
