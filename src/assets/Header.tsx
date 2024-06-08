@@ -1,6 +1,6 @@
 export default function Header() {
-  return (
-    <div className="container">
+  return (  
+    <div className="container-fluid">
       <nav
         className="navbar navbar-light"
         style={{ backgroundColor: "#2C4E80" }}
