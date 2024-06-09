@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-interface TaskBudgetProps {
+interface AddTodoFormProps {
   addTodo: (newTodo: TodoItem) => void;
 }
 
@@ -10,7 +10,7 @@ interface TodoItem {
   completed: boolean;
 }
 
-const TaskBudget: React.FC<TaskBudgetProps> = ({ addTodo }) => {
+const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   const [taskText, setTaskText] = useState<string>("");
 
   function handleTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -46,4 +46,4 @@ const TaskBudget: React.FC<TaskBudgetProps> = ({ addTodo }) => {
   );
 };
 
-export default TaskBudget;
+export default TodoForm;

@@ -1,7 +1,7 @@
-import TaskBudget from "./assets/TaskBudget";
+import TodoForm from "./assets/Components/TodoForm";
 import { useState } from "react";
-import Todo from "./assets/Todo";
-import Header from "./assets/Header";
+import Todo from "./assets/Components/Todo";
+import Header from "./assets/Components/Header";
 
 interface TodoItem {
   id: number;
@@ -20,7 +20,7 @@ function App() {
     <div>
       <Header />
       <p className="oswald title">Your Task</p>
-      <TaskBudget addTodo={addTodo} />
+      <TodoForm addTodo={addTodo} />
       {todo.map((todoItem, index) => (
         <Todo task={todoItem} key={index} />
       ))}
