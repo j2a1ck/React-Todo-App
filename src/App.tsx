@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import TodoForm from "./assets/Components/TodoForm";
-import { useState } from "react";
 import Todo from "./assets/Components/Todo";
-import Header from "./assets/Components/Header";
+import Navbar from "./assets/Components/Navbar";
 
 interface TodoItem {
   id: number;
@@ -9,23 +9,31 @@ interface TodoItem {
   completed: boolean;
 }
 
-function App() {
-  const [todo, setTodo] = useState<TodoItem[]>([]);
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
   const addTodo = (newTodo: TodoItem) => {
-    setTodo([...todo, newTodo]);
+    setTodos([...todos, newTodo]);
+  };
+
+  const toggleTodo = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   };
 
   return (
     <div>
-      <Header />
-      <p className="oswald title">Your Task</p>
+      <Navbar />
+      <h1 className="oswald title">Your Task</h1>
       <TodoForm addTodo={addTodo} />
-      {todo.map((todoItem, index) => (
-        <Todo task={todoItem} key={index} />
+      {todos.map((todoItem) => (
+        <Todo key={todoItem.id} task={todoItem} toggleTodo={toggleTodo} />
       ))}
-    </div>
+    </div>  
   );
-}
+};
 
 export default App;

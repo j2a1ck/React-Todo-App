@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Navbar() {
   return (  
     <div className="container-fluid">
       <nav

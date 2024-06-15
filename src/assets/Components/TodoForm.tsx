@@ -13,12 +13,8 @@ interface TodoItem {
 const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   const [taskText, setTaskText] = useState<string>("");
 
-  function handleTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setTaskText(event.target.value);
-  }
-
-  function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     if (taskText.trim())
       addTodo({
         id: Date.now(),
@@ -31,13 +27,13 @@ const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   return (
     <>
       <div>
-        <form className="box">
+        <form className="box" onSubmit={handleFormSubmit}>
           <input
             value={taskText}
-            onChange={handleTaskChange}
+            onChange={(event) => setTaskText(event.target.value)}
             placeholder="what is next? "
           ></input>
-          <button type="submit" onClick={handleButtonClick}>
+          <button type="submit">
             add
           </button>
         </form>
