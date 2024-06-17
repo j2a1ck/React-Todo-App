@@ -1,0 +1,97 @@
+$background-color: #242424;
+$oswald-font: "Oswald", sans-serif;
+$title-color: aqua;
+$button-background: blueviolet;
+$button-color: white;
+$input-background: #78e4b7;
+$input-color: black;
+$placeholder-color: rgb(41, 65, 63);
+$list-background: #e1346e;
+$list-color: white;
+$list-text-color: grey;
+$trash-icon-color: yellow;
+
+body {
+  background-color: $background-color;
+}
+
+.oswald {
+  font-family: $oswald-font;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.title {
+  text-align: center;
+  color: $title-color;
+  margin: 15px;
+}
+
+.box {
+  text-align: center;
+
+  button {
+    color: $button-color;
+    background-color: $button-background;
+    margin: 10px;
+    border-radius: 15px;
+    width: 70px;
+    height: 40px;
+    border: none;
+  }
+
+  input {
+    width: 250px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: $input-background;
+    color: $input-color;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    border: none;
+
+    &::placeholder {
+      color: $placeholder-color;
+      opacity: 1;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background-color: $list-background;
+  color: $list-color;
+  font-family: Arial, sans-serif;
+  height: 30px;
+  width: 300px;
+  margin: 10px auto;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .completed {
+    text-decoration: line-through;
+    color: $list-text-color;
+  }
+
+  .checkbox {
+    margin-right: 5px;
+  }
+
+  .checked-icon {
+    color: gray;
+  }
+
+  .unchecked-icon {
+    color: black;
+  }
+
+  .trashIcon {
+    size: 10px;
+    color: $trash-icon-color;
+    margin-left: auto;
+  }
+}
