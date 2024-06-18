@@ -29,13 +29,12 @@ const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
       <div>
         <form className="box" onSubmit={handleFormSubmit}>
           <input
+            id="IDK"
             value={taskText}
             onChange={(event) => setTaskText(event.target.value)}
             placeholder="what is next? "
           ></input>
-          <button type="submit">
-            add
-          </button>
+          <button type="submit">add</button>
         </form>
       </div>
     </>

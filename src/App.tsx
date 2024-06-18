@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import TodoForm from "./assets/Components/TodoForm";
-import Todo from "./assets/Components/Todo";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./assets/Components/Navbar";
+import Home from "./assets/pages/home";
+import About from "./assets/pages/about";
 
 interface TodoItem {
   id: number;
@@ -24,15 +25,28 @@ const App: React.FC = () => {
     );
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
-    <div>
+    <Router>
       <Navbar />
-      <h1 className="oswald title">Your Task</h1>
-      <TodoForm addTodo={addTodo} />
-      {todos.map((todoItem) => (
-        <Todo key={todoItem.id} task={todoItem} toggleTodo={toggleTodo} />
-      ))}
-    </div>  
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              todos={todos}
+              addTodo={addTodo}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 };
 
