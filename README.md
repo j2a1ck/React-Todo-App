@@ -38,7 +38,7 @@ First, make sure you have Node.js and npm installed. You can download and instal
 5. **Start the development server:**
 
     ```bash
-    npm start
+    npm run dev 
     ```
 
 The app should now be running on `http://localhost:5173`.
