@@ -1,11 +1,11 @@
 $background-color: #242424;
 $oswald-font: "Oswald", sans-serif;
 $title-color: aqua;
-$button-background: blueviolet;
+$button-background: black;
 $button-color: white;
 $input-background: #78e4b7;
 $input-color: black;
-$placeholder-color: rgb(41, 65, 63);
+$placeholder-color: black;
 $list-background: #e1346e;
 $list-color: white;
 $list-text-color: grey;
@@ -35,8 +35,8 @@ body {
     background-color: $button-background;
     margin: 10px;
     border-radius: 15px;
-    width: 70px;
-    height: 40px;
+    width: 60px;
+    height: 35px;
     border: none;
   }
 
@@ -51,7 +51,7 @@ body {
     text-align: center;
     border: none;
 
-    &::placeholder {
+    ::placeholder {
       color: $placeholder-color;
       opacity: 1;
     }

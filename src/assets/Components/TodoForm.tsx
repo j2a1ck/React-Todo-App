@@ -25,7 +25,6 @@ const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   }
 
   return (
-    <>
       <div>
         <form className="box" onSubmit={handleFormSubmit}>
           <input
@@ -37,7 +36,6 @@ const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
           <button type="submit">add</button>
         </form>
       </div>
-    </>
   );
 };
 
