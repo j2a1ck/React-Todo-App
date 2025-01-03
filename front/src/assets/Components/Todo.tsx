@@ -8,27 +8,27 @@ import {
 
 interface TodoProps {
   task: TodoItem;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleTodo: (id: string) => void;
+  deleteTodo: (id: string) => void;
 }
 
 interface TodoItem {
-  id: number;
-  text: string;
+  _id: string;
+  title: string;
   completed: boolean;
 }
 
 const Todo: React.FC<TodoProps> = ({ task, toggleTodo, deleteTodo }) => {
   return (
     <div className="list">
-      <div className="checkbox" onClick={() => toggleTodo(task.id)}>
+      <div className="checkbox" onClick={() => toggleTodo(task._id)}>
         <FontAwesomeIcon
           icon={task.completed ? faSquareCheck : faCircleCheck}
           className={task.completed ? "checked-icon" : "unchecked-icon"}
         />
       </div>
-      <label className={task.completed ? "completed" : ""}>{task.text}</label>
-      <div className="trashIcon" onClick={() => deleteTodo(task.id)}>
+      <label className={task.completed ? "completed" : ""}>{task.title}</label>
+      <div className="trashIcon" onClick={() => deleteTodo(task._id)}>
         <FontAwesomeIcon icon={faTrashAlt} />
       </div>
     </div>

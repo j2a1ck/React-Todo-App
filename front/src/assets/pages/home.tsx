@@ -1,18 +1,19 @@
+// @ts-nocheck
 import React from "react";
 import TodoForm from "../Components/TodoForm";
 import Todo from "../Components/Todo";
 
 interface TodoItem {
-  id: number;
-  text: string;
-  completed: boolean;
+  _id: string;
+  title: string;
+  complete: boolean;
 }
 
 interface HomeProps {
   todos: TodoItem[];
   addTodo: (newTodo: TodoItem) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleTodo: (id: string) => void;
+  deleteTodo: (id: string) => void;
 }
 
 const Home: React.FC<HomeProps> = ({
@@ -24,9 +25,9 @@ const Home: React.FC<HomeProps> = ({
   <div>
     <h1 className="oswald title">Your Task</h1>
     <TodoForm addTodo={addTodo} />
-    {todos.map((todoItem) => (
+    {todos.map((todoItem, index) => (
       <Todo
-        key={todoItem.id}
+        key={index}
         task={todoItem}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}

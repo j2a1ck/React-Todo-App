@@ -6,8 +6,8 @@ interface AddTodoFormProps {
 
 interface TodoItem {
   id: number;
-  text: string;
-  completed: boolean;
+  title: string;
+  complete: boolean;
 }
 
 const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
@@ -18,24 +18,24 @@ const TodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
     if (taskText.trim())
       addTodo({
         id: Date.now(),
-        text: taskText,
-        completed: false,
+        title: taskText,
+        complete: false,
       });
     setTaskText("");
   }
 
   return (
-      <div>
-        <form className="box" onSubmit={handleFormSubmit}>
-          <input
-            id="IDK"
-            value={taskText}
-            onChange={(event) => setTaskText(event.target.value)}
-            placeholder="what is next? "
-          ></input>
-          <button type="submit">add</button>
-        </form>
-      </div>
+    <div>
+      <form className="box" onSubmit={handleFormSubmit}>
+        <input
+          id="IDK"
+          value={taskText}
+          onChange={(event) => setTaskText(event.target.value)}
+          placeholder="what is next? "
+        ></input>
+        <button type="submit">add</button>
+      </form>
+    </div>
   );
 };
 

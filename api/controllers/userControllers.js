@@ -25,7 +25,7 @@ router.put("/:id", async (req, res) => {
         title: req.body.title,
         completed: req.body.completed,
       },
-      { new: true } // This returns the updated document
+      { new: true }
     );
     if (!updatedTask) {
       return res.status(404).json({ message: "Task not found" });
@@ -37,12 +37,35 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const task = await tasks.findById(id);
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    const updatedTask = await tasks.findByIdAndUpdate(
+      id,
+      { completed: !task.completed },
+      { new: true }
+    );
+
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const task = await tasks.deleteOne({ _id: id });
-    console.log(task);
-    res.status(200).json(task);
+    const deletedTask = await tasks.findByIdAndDelete(id);
+    if (!deletedTask) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+    res.status(200).json({ success: true, _id: id });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
