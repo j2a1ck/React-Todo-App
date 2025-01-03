@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./assets/Components/Navbar";
@@ -13,14 +12,16 @@ interface TodoItem {
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [task, setTask] = useState("");
 
   const addTodo = async (newTodo: TodoItem) => {
     try {
       const response = await fetch("http://localhost:5000/api/v1/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: newTodo.title, complete: false }),
+        body: JSON.stringify({
+          title: newTodo.title,
+          completed: false,
+        }),
       });
 
       if (!response.ok) {
@@ -28,7 +29,7 @@ const App: React.FC = () => {
       }
 
       const newTask = await response.json();
-      setTodos((prv) => [...prv, { ...newTodo, id: newTask.id }]);
+      setTodos((prev) => [...prev, newTask]);
     } catch (error) {
       console.error("Error adding todo:", error);
     }
@@ -36,6 +37,11 @@ const App: React.FC = () => {
 
   const toggleTodo = async (itemId: string) => {
     try {
+      if (!itemId) {
+        console.error("Invalid ID");
+        return;
+      }
+
       const response = await fetch(`http://localhost:5000/api/v1/${itemId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -48,21 +54,29 @@ const App: React.FC = () => {
       const updatedTask = await response.json();
       setTodos(todos.map((todo) => (todo._id === itemId ? updatedTask : todo)));
     } catch (error) {
-      console.log(error);
+      console.error("Error updating todo:", error);
     }
   };
 
   const deleteTodo = async (itemId: string) => {
     try {
+      if (!itemId) {
+        console.error("Invalid ID");
+        return;
+      }
+
       const response = await fetch(`http://localhost:5000/api/v1/${itemId}`, {
         method: "DELETE",
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || `HTTP error! status: ${response.status}`
+        );
       }
 
-      setTodos(todos.filter((todo) => todo._id !== itemId));
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== itemId));
     } catch (error) {
       console.error("Error deleting todo:", error);
     }

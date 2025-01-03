@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import { tasks } from "../models/tasks.js";
 
 const router = express.Router();
@@ -7,7 +8,7 @@ router.post("/", async (req, res) => {
   try {
     const newTodo = await tasks.create({
       title: req.body.title,
-      completed: req.body.completed,
+      completed: false,
     });
     res.status(201).json(newTodo);
   } catch (error) {
@@ -40,6 +41,10 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
+
     const task = await tasks.findById(id);
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
@@ -61,13 +66,17 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
+
     const deletedTask = await tasks.findByIdAndDelete(id);
     if (!deletedTask) {
       return res.status(404).json({ message: "Task not found" });
     }
-    res.status(200).json({ success: true, _id: id });
+    res.status(200).json(deletedTask);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ error: error.message });
   }
 });

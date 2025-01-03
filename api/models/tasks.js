@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const todoSchema = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   completed: {
     type: Boolean,
@@ -11,4 +11,4 @@ const todoSchema = new mongoose.Schema({
   },
 });
 
-export const tasks = mongoose.model("tasks", todoSchema);
+export const tasks = mongoose.model("Task", taskSchema);
